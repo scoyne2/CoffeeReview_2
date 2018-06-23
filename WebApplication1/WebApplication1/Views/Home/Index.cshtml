@@ -1,0 +1,31 @@
+﻿@model  IQueryable<WebApplication1.Models.ReviewDisplay>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Brand</th>
+                        <th>Coffee</th>
+                        <th>Review Count</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(ReviewDisplay r in Model)
+                    {
+                        <tr>
+                            <td>@r.product_vendor</td>
+                            <td>@r.product_name</td>
+                            <td>@r.review_count</td>
+                            <td>
+                                @Html.ActionLink(r.review_rating.ToString(), "Index", "Reviews", new { pid = @r.product_id }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

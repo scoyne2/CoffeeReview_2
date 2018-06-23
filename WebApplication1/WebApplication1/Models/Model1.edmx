@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CoffeeReviewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DEV\SOURCE\REPOS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\COFFEEREVIEW.MDF.dbo.products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="500" />
+          <Property Name="product_vendor" Type="varchar" MaxLength="500" />
+          <Property Name="product_description" Type="varchar(max)" />
+          <Property Name="product_image_path" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DEV\SOURCE\REPOS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\COFFEEREVIEW.MDF.dbo.reviewers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="reviewers">
+          <Key>
+            <PropertyRef Name="reviewer_id" />
+          </Key>
+          <Property Name="reviewer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reviewer_last_name" Type="varchar" MaxLength="500" />
+          <Property Name="reviewer_first_name" Type="varchar" MaxLength="500" />
+          <Property Name="reviewer_email" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DEV\SOURCE\REPOS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\COFFEEREVIEW.MDF.dbo.reviews' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="reviews">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reviewer_id" Type="int" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="review_description" Type="varchar(max)" />
+          <Property Name="review_rating" Type="int" />
+        </EntityType>
+        <EntityContainer Name="CoffeeReviewModelStoreContainer">
+          <EntitySet Name="products" EntityType="Self.products" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [products].[product_id] AS [product_id], 
+    [products].[product_name] AS [product_name], 
+    [products].[product_vendor] AS [product_vendor], 
+    [products].[product_description] AS [product_description], 
+    [products].[product_image_path] AS [product_image_path]
+    FROM [dbo].[products] AS [products]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="reviewers" EntityType="Self.reviewers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [reviewers].[reviewer_id] AS [reviewer_id], 
+    [reviewers].[reviewer_last_name] AS [reviewer_last_name], 
+    [reviewers].[reviewer_first_name] AS [reviewer_first_name], 
+    [reviewers].[reviewer_email] AS [reviewer_email]
+    FROM [dbo].[reviewers] AS [reviewers]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="reviews" EntityType="Self.reviews" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [reviews].[review_id] AS [review_id], 
+    [reviews].[reviewer_id] AS [reviewer_id], 
+    [reviews].[product_id] AS [product_id], 
+    [reviews].[review_description] AS [review_description], 
+    [reviews].[review_rating] AS [review_rating]
+    FROM [dbo].[reviews] AS [reviews]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoffeeReviewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="product_vendor" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="product_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="product_image_path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="reviewer">
+          <Key>
+            <PropertyRef Name="reviewer_id" />
+          </Key>
+          <Property Name="reviewer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reviewer_last_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="reviewer_first_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="reviewer_email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reviewer_id" Type="Int32" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="review_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="review_rating" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="CoffeeReviewEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="reviewers" EntityType="Self.reviewer" />
+          <EntitySet Name="reviews" EntityType="Self.review" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoffeeReviewModelStoreContainer" CdmEntityContainer="CoffeeReviewEntities">
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="CoffeeReviewModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_vendor" ColumnName="product_vendor" />
+                <ScalarProperty Name="product_description" ColumnName="product_description" />
+                <ScalarProperty Name="product_image_path" ColumnName="product_image_path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reviewers">
+            <EntityTypeMapping TypeName="CoffeeReviewModel.reviewer">
+              <MappingFragment StoreEntitySet="reviewers">
+                <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+                <ScalarProperty Name="reviewer_last_name" ColumnName="reviewer_last_name" />
+                <ScalarProperty Name="reviewer_first_name" ColumnName="reviewer_first_name" />
+                <ScalarProperty Name="reviewer_email" ColumnName="reviewer_email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reviews">
+            <EntityTypeMapping TypeName="CoffeeReviewModel.review">
+              <MappingFragment StoreEntitySet="reviews">
+                <ScalarProperty Name="review_id" ColumnName="review_id" />
+                <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="review_description" ColumnName="review_description" />
+                <ScalarProperty Name="review_rating" ColumnName="review_rating" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿@model  ReviewSubmit
+
+@using (Html.BeginForm("SubmitReview", "CreateReview", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="reviewer_first_name">First Name:</label>
+        <input name="reviewer_first_name" type="text" class="form-control" id="reviewer_first_name" placeholder="First Name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="reviewer_last_name">Last Name:</label>
+        <input name="reviewer_last_name" type="text" class="form-control" id="reviewer_last_name" placeholder="Last Name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="selectedProductId">Product:</label>
+        @Html.DropDownListFor(m => m.selectedProductId, Model.products, new { @class = "form-control", @name = "selectedProductId", required = "required", @id = "selectedProductId" })
+    </div>
+
+    <div class="form-group">
+        <label for="review_rating">Rating: </label>
+        <input name="review_rating" type="text" class="form-control" id="review_rating" placeholder="Rating" required>
+    </div>
+
+    <div class="form-group">
+        <label for="review_description">Review: </label>
+        <input name="review_description" type="text" class="form-control" id="review_description" placeholder="Product Review" required>
+    </div>
+
+    <input type="submit" value="Submit Review" id="btnSubmit" />
+        }
