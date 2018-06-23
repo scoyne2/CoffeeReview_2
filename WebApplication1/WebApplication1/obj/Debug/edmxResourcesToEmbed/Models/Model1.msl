@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoffeeReviewModelStoreContainer" CdmEntityContainer="CoffeeReviewEntities">
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="CoffeeReviewModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_vendor" ColumnName="product_vendor" />
+          <ScalarProperty Name="product_description" ColumnName="product_description" />
+          <ScalarProperty Name="product_image_path" ColumnName="product_image_path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reviewers">
+      <EntityTypeMapping TypeName="CoffeeReviewModel.reviewer">
+        <MappingFragment StoreEntitySet="reviewers">
+          <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+          <ScalarProperty Name="reviewer_last_name" ColumnName="reviewer_last_name" />
+          <ScalarProperty Name="reviewer_first_name" ColumnName="reviewer_first_name" />
+          <ScalarProperty Name="reviewer_email" ColumnName="reviewer_email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reviews">
+      <EntityTypeMapping TypeName="CoffeeReviewModel.review">
+        <MappingFragment StoreEntitySet="reviews">
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+          <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="review_description" ColumnName="review_description" />
+          <ScalarProperty Name="review_rating" ColumnName="review_rating" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

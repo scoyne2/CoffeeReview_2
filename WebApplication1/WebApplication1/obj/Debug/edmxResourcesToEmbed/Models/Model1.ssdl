@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoffeeReviewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DEV\SOURCE\REPOS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\COFFEEREVIEW.MDF.dbo.products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_name" Type="varchar" MaxLength="500" />
+    <Property Name="product_vendor" Type="varchar" MaxLength="500" />
+    <Property Name="product_description" Type="varchar(max)" />
+    <Property Name="product_image_path" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DEV\SOURCE\REPOS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\COFFEEREVIEW.MDF.dbo.reviewers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="reviewers">
+    <Key>
+      <PropertyRef Name="reviewer_id" />
+    </Key>
+    <Property Name="reviewer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reviewer_last_name" Type="varchar" MaxLength="500" />
+    <Property Name="reviewer_first_name" Type="varchar" MaxLength="500" />
+    <Property Name="reviewer_email" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'C:\USERS\DEV\SOURCE\REPOS\WEBAPPLICATION1\WEBAPPLICATION1\APP_DATA\COFFEEREVIEW.MDF.dbo.reviews' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="reviews">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reviewer_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="review_description" Type="varchar(max)" />
+    <Property Name="review_rating" Type="int" />
+  </EntityType>
+  <EntityContainer Name="CoffeeReviewModelStoreContainer">
+    <EntitySet Name="products" EntityType="Self.products" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [products].[product_id] AS [product_id], 
+    [products].[product_name] AS [product_name], 
+    [products].[product_vendor] AS [product_vendor], 
+    [products].[product_description] AS [product_description], 
+    [products].[product_image_path] AS [product_image_path]
+    FROM [dbo].[products] AS [products]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="reviewers" EntityType="Self.reviewers" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [reviewers].[reviewer_id] AS [reviewer_id], 
+    [reviewers].[reviewer_last_name] AS [reviewer_last_name], 
+    [reviewers].[reviewer_first_name] AS [reviewer_first_name], 
+    [reviewers].[reviewer_email] AS [reviewer_email]
+    FROM [dbo].[reviewers] AS [reviewers]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="reviews" EntityType="Self.reviews" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [reviews].[review_id] AS [review_id], 
+    [reviews].[reviewer_id] AS [reviewer_id], 
+    [reviews].[product_id] AS [product_id], 
+    [reviews].[review_description] AS [review_description], 
+    [reviews].[review_rating] AS [review_rating]
+    FROM [dbo].[reviews] AS [reviews]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
